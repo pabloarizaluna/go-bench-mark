@@ -20,7 +20,7 @@ func main() {
 	log.Println("Setting up PProfile...")
 	setUpPProfile(mux)
 	log.Println("Starting server...")
-	log.Fatal(http.ListenAndServe("localhost:3000", mux))
+	log.Fatal(http.ListenAndServe("0.0.0.0:8080", mux))
 }
 
 func setUpPProfile(mux *http.ServeMux) {
