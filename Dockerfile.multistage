@@ -1,0 +1,16 @@
+FROM golang:alpine AS builder
+
+COPY . /app/
+WORKDIR /app
+
+RUN CGO_ENABLED=0 go build -ldflags '-s -w -extldflags "-static"' -o /app/rest .
+
+FROM scratch
+
+COPY --from=builder /app/rest /app/rest
+
+WORKDIR /app
+
+EXPOSE 8081
+
+CMD [ "./rest" ]
