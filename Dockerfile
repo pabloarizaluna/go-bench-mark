@@ -1,12 +1,10 @@
 FROM golang:alpine
 
 WORKDIR /app
+COPY . .
 
-COPY . /app/
-RUN go mod download
+RUN go build -o rest
 
-RUN go build -o /rest
+EXPOSE 8081
 
-EXPOSE 3000
-
-CMD [ "/rest" ]
+CMD [ "./rest" ]

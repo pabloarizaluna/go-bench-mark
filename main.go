@@ -13,10 +13,13 @@ import (
 
 func main() {
 	mux := http.NewServeMux()
+	log.Println("Setting up routes...")
 	greeting.GreetingHandler(mux)
 	counter.CounterHandler(mux)
 	download.DownloadHandler(mux)
+	log.Println("Setting up PProfile...")
 	setUpPProfile(mux)
+	log.Println("Starting server...")
 	log.Fatal(http.ListenAndServe("localhost:3000", mux))
 }
 
